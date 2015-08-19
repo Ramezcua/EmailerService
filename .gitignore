@@ -191,3 +191,5 @@ Emailer/Sensitive.txt
 Emailer/Sensitive.config
 EmailerConsoleRunner/Sensitive.config
 EmailerService/Sensitive.config
+EmailerConsoleRunner/App.config
+EmailerService/App.config
