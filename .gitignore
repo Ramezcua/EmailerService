@@ -187,3 +187,7 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+Emailer/Sensitive.txt
+Emailer/Sensitive.config
+EmailerConsoleRunner/Sensitive.config
+EmailerService/Sensitive.config

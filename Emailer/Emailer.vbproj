@@ -55,7 +55,6 @@
     <Import Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -66,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailerManager.vb" />
+    <Compile Include="Helpers\MailHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="My Project\" />
@@ -75,6 +75,7 @@
       <HintPath>..\packages\NLog.4.0.1\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
