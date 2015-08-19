@@ -1,4 +1,6 @@
 ﻿Imports NLog
+Imports Emailer.EmailerManager
+
 Public Class EmailService
 
     Private WithEvents mTimer As System.Timers.Timer
@@ -18,7 +20,8 @@ Public Class EmailService
     End Sub
 
     Private Sub MTimerElapsed(ByVal sender As Object, ByVal e As System.Timers.ElapsedEventArgs) Handles mTimer.Elapsed
+        Emailer.EmailerManager.Run()
         'Do work
-        Logger.Debug("Hello world! The time is " & Date.Now.ToString("MM\/dd\/yyyy HH:mm"))
+        'Logger.Debug("Hello world! The time is " & Date.Now.ToString("MM\/dd\/yyyy HH:mm"))
     End Sub
 End Class
