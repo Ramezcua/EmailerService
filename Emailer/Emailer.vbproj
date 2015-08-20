@@ -64,8 +64,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EmailJob.vb" />
+    <Compile Include="Helpers\DAOHelper.vb" />
+    <Compile Include="Helpers\EmailTextGenerator.vb" />
+    <Compile Include="TaskClasses\IEmailTask.vb" />
     <Compile Include="EmailerManager.vb" />
     <Compile Include="Helpers\MailHelper.vb" />
+    <Compile Include="TaskClasses\VolunterHoursReminderTask.vb" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="My Project\" />
