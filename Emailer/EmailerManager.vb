@@ -1,22 +1,38 @@
-﻿Imports NLog
+﻿Imports Emailer.EmailTask
 Imports Emailer.Helpers
+Imports NLog
+Imports Quartz
+Imports Quartz.Impl
+Imports System
 Imports System.Collections.Generic
-Imports Emailer.EmailTask
+Imports System.Threading
+Imports Emailer.QuartzJobs
 
 Public Class EmailerManager
     Private Shared Logger As Logger = LogManager.GetCurrentClassLogger()
+    Private Scheduler As IScheduler
 
-    Public Shared Sub Run()
-        ' Get all email tasks
-        Dim EmailTasks As New List(Of IEmailTask)
-        EmailTasks.Add(New VolunterHoursReminderTask())
+    Public Sub RunManager()
 
-        ' Do work
-        For Each Task In EmailTasks
-            Task.GenerateEmails()
-            Task.SendEmails()
-            Task.PostSendUpdate()
-        Next
+        Try
+            Me.Scheduler = StdSchedulerFactory.GetDefaultScheduler()
+            Me.Scheduler.Start()
+
+            Dim job As IJobDetail = JobBuilder.Create(Of VolunteerHoursReminderJob)().WithIdentity("VolunteerHours", "Group1").Build()
+            Dim trigger As ITrigger = TriggerBuilder.Create().WithIdentity("2MinuteTrigger", "Group1") _
+                                      .StartNow() _
+                                      .WithSimpleSchedule(Function(x) x.WithIntervalInMinutes(2).RepeatForever()).Build()
+            Me.Scheduler.ScheduleJob(job, trigger)
+
+        Catch ex As Exception
+            Logger.Fatal(ex)
+        End Try
+    End Sub
+
+    Public Sub StopManager()
+        If Not IsNothing(Me.Scheduler) Then
+            Me.Scheduler.Shutdown()
+        End If
     End Sub
 
 End Class

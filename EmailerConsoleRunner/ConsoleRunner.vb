@@ -4,9 +4,12 @@ Imports Emailer.EmailerManager
 Module ConsoleRunner
 
     Sub Main()
-        Console.WriteLine("Running Email Managing" & vbCrLf)
-        Emailer.EmailerManager.Run()
-        Console.WriteLine(vbCrLf & "Finished Running Email Mananaging")
+        Dim Emailer As Emailer.EmailerManager = New Emailer.EmailerManager()
+        Emailer.RunManager()
+
+        Threading.Thread.Sleep(TimeSpan.FromMinutes(9))
+
+        Emailer.StopManager()
         Console.ReadKey()
     End Sub
 
